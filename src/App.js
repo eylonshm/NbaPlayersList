@@ -1,11 +1,11 @@
-import "./App.css";
-import "./styles/_index.scss";
+import "./App.scss";
 import { AppWrapper } from "./HOC";
+import "./styles/_index.scss";
 
 function App() {
   return (
     <AppWrapper>
-      <div></div>
+      <div className={"App"}></div>
     </AppWrapper>
   );
 }

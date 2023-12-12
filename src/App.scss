@@ -1,0 +1,14 @@
+@use "./styles/variables" as *;
+
+.App {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+
+  &.darkTheme {
+    @include toggle-theme(dark);
+  }
+
+  &.lightTheme {
+    @include toggle-theme(light);
+  }
+}
