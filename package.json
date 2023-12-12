@@ -10,6 +10,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "start-server-and-test": "^2.0.3",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -18,7 +19,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "cy:open-e2e": "cypress open --e2e --browser chrome",
+    "cy:run-e2e": "cypress run --e2e",
+    "cy:e2e": "start-server-and-test dev http-get://localhost:5173 cy:open-e2e"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +53,7 @@
     "@storybook/react": "^7.6.4",
     "@storybook/react-webpack5": "^7.6.4",
     "@storybook/test": "^7.6.4",
+    "cypress": "^13.6.1",
     "eslint-plugin-storybook": "^0.6.15",
     "prop-types": "^15.8.1",
     "storybook": "^7.6.4",
