@@ -1,0 +1,15 @@
+@use "./pxToRem" as *;
+
+:root {
+  --size-1: #{pxToRem(2)};
+  --size-2: #{pxToRem(4)};
+  --size-3: #{pxToRem(6)};
+  --size-4: #{pxToRem(8)};
+  --size-5: #{pxToRem(10)};
+  --size-6: #{pxToRem(12)};
+  --size-7: #{pxToRem(16)};
+  --size-8: #{pxToRem(20)};
+  --size-9: #{pxToRem(24)};
+  --size-10: #{pxToRem(32)};
+  --size-11: #{pxToRem(36)};
+}

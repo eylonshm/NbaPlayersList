@@ -1,0 +1,23 @@
+:root {
+  --color-primary: #fff;
+  --color-secondary: #4d74fe;
+  --color-label: #98a0a2;
+  --color-info: #f1f5f8;
+  --color-text: #000;
+}
+
+@mixin toggle-theme($theme) {
+  @if $theme == dark {
+    --color-primary: #fff;
+    --color-secondary: #4d74fe;
+    --color-label: #98a0a2;
+    --color-info: #f1f5f8;
+    --color-text: #000;
+  } @else {
+    --color-primary: #495057;
+    --color-secondary: #9d4edd;
+    --color-label: #98a0a2;
+    --color-info: #fff;
+    --color-text: #fff;
+  }
+}

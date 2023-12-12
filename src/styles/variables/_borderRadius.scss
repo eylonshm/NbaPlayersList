@@ -1,0 +1,8 @@
+@use "../abstract/" as *;
+
+:root {
+  --border-radius-s: var(--size-2);
+  --border-radius-m: var(--size-4);
+  --border-radius-l: var(--size-7);
+  --border-radius-circular: 50%;
+}
