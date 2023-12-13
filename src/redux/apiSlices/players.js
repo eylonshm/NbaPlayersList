@@ -4,7 +4,6 @@ import { playersEndpoints } from "../apiQueries";
 const initialState = {
   playersArr: [],
   favorites: new Set(),
-  currentPage: 1,
 };
 
 export const playersSlice = createSlice({
@@ -29,7 +28,6 @@ export const playersSlice = createSlice({
       (state, { payload }) => {
         const { data } = payload;
         if (data) {
-          state.currentPage++;
           state.playersArr = [...state.playersArr, ...data];
         }
       }

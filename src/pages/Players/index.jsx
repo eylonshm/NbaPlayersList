@@ -1,7 +1,12 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
-import { ScrollList, LoadingIndicator, PlayerCard } from "../../components";
+import {
+  ScrollList,
+  LoadingIndicator,
+  PlayerCard,
+  SearchInput,
+} from "../../components";
 import {
   getPlayersSlice,
   togglePlayerFavorite,
@@ -9,31 +14,45 @@ import {
 } from "../../redux";
 import { playersPage as copies } from "../../copies";
 import styles from "./index.module.scss";
+import { useMemo } from "react";
+import { useDeferredValue } from "react";
 
 const GUTTER_SIZE = 10;
+const listTypes = {
+  PLAYERS: "players",
+  FAVORITES: "favorites",
+};
 
 const Players = ({ className }) => {
   const dispatch = useDispatch();
-  const {
-    playersArr: players,
-    favorites: favoritePlayers,
-    currentPage,
-  } = useSelector((state) => getPlayersSlice(state));
-
-  const {
-    isLoading,
-    isFetching,
-    isError,
-    refetch: fetchMorePlayers,
-  } = useGetPlayersQuery({});
+  const [page, setPage] = useState(1);
+  const [playerSearchValue, setPlayerSearchValue] = useState("");
+  const deferredPlayerSearchValue = useDeferredValue(playerSearchValue);
+  const { playersArr: players, favorites: favoritePlayers } = useSelector(
+    (state) => getPlayersSlice(state)
+  );
+  const { isLoading, isFetching, isError } = useGetPlayersQuery(page);
 
   const onClickFavoritePlayer = (playerId) => {
     dispatch(togglePlayerFavorite({ playerId }));
   };
 
+  const filteredPlayers = useMemo(
+    () =>
+      players.filter(({ first_name, last_name }) => {
+        return `${first_name} ${last_name}`.includes(deferredPlayerSearchValue);
+      }),
+    [players, deferredPlayerSearchValue]
+  );
+
   const listPlayer = useCallback(
-    ({ index, style, loading }) => {
-      const player = players[index];
+    ({ index, style, loading, listType }) => {
+      const player =
+        listType === listTypes.PLAYERS
+          ? filteredPlayers[index]
+          : favoritePlayersArr[index];
+
+      if (!player) return;
       if (loading)
         return <LoadingIndicator className={styles.loader} style={style} />;
 
@@ -53,19 +72,37 @@ const Players = ({ className }) => {
         />
       );
     },
+    [filteredPlayers, favoritePlayers]
+  );
+
+  const favoritePlayersArr = useMemo(
+    () => players.filter(({ id }) => favoritePlayers.has(id)),
     [players, favoritePlayers]
   );
 
+  const loadMorePlayers = () => {
+    if (deferredPlayerSearchValue.trim() !== "") return;
+    setPage((prevPage) => prevPage + 1);
+  };
+
   return (
-    <div className={classNames(styles.container, className)}>
+    <main className={classNames(styles.container, className)}>
       <div className={styles.listContainer}>
         <h3>{copies.players}</h3>
+        <SearchInput
+          placeholder={copies.search}
+          label={copies.search}
+          value={playerSearchValue}
+          setValue={setPlayerSearchValue}
+        />
         <ScrollList
           className={styles.playersList}
-          data={players}
+          data={filteredPlayers}
           loading={isFetching}
-          loadMoreItems={fetchMorePlayers}
-          item={listPlayer}
+          loadMoreItems={loadMorePlayers}
+          item={(props) =>
+            listPlayer({ listType: listTypes.PLAYERS, ...props })
+          }
         />
       </div>
       <span className={styles.seperator} />
@@ -73,11 +110,13 @@ const Players = ({ className }) => {
         <h3>{copies.favorites}</h3>
         <ScrollList
           className={styles.playersList}
-          data={players.filter((player) => favoritePlayers.has(player.id))}
-          item={listPlayer}
+          data={favoritePlayersArr}
+          item={(props) =>
+            listPlayer({ listType: listTypes.FAVORITES, ...props })
+          }
         />
       </div>
-    </div>
+    </main>
   );
 };
 

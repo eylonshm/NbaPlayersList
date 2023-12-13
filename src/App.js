@@ -11,7 +11,9 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
-      <h2 className="title">{copies.title}</h2>
+      <header>
+        <h2 className="title">{copies.title}</h2>
+      </header>
       <ThemeToggle onClick={themeSwitch} />
       <Players className={"players"} />
     </div>

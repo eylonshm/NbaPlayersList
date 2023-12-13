@@ -9,6 +9,8 @@
   background-color: var(--color-background);
   color: var(--color-text);
   overflow: hidden;
+  container-type: inline-size;
+  container-name: app;
 
   &.dark {
     @include toggle-theme(dark);

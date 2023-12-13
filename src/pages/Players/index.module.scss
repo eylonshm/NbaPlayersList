@@ -3,6 +3,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  container-type: inline-size;
+  container-name: players;
 
   .listContainer {
     display: flex;
@@ -32,5 +34,19 @@
     border-radius: var(--border-radius-s);
     background-color: var(--color-secondary);
     margin: var(--margin-xxxl);
+  }
+}
+
+@container app (max-width: 1300px) {
+  .container {
+    flex-direction: column;
+    width: 100% !important;
+    gap: var(--margin-xxl);
+  }
+  .seperator {
+    display: none;
+  }
+  .listContainer {
+    width: 100%;
   }
 }

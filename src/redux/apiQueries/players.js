@@ -7,8 +7,8 @@ const playersSlice = createApi({
   }),
   endpoints: (builder) => ({
     getPlayers: builder.query({
-      query: ({ currentPage = 0 }) => ({
-        url: `/players?per_page=25&page=${currentPage}`,
+      query: (page) => ({
+        url: `/players?per_page=25&page=${page}`,
         method: "GET",
       }),
     }),

@@ -22,7 +22,8 @@ const ScrollList = ({
   const loadMoreItems = (startIndex) => {
     if (
       startIndex >= data.length - threshold - INFINITE_LOADER_START_INDEX_BUG &&
-      data.length < maxLength
+      data.length < maxLength &&
+      !loading
     ) {
       loadMoreItemsProp();
     }
