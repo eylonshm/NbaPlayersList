@@ -1,5 +1,3 @@
-export const getAllPlayers = (state) => state.players.allPlayers;
+export const getPlayersSlice = (state) => state.players;
+export const getAllPlayers = (state) => state.players.playersArr;
 export const getFavoritePlayers = (state) => state.players.favorites;
-export const getPlayer = (state, playerId) => {
-  // @TODO: Return player by id
-};

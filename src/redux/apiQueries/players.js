@@ -6,19 +6,17 @@ const playersSlice = createApi({
     baseUrl: `https://www.balldontlie.io/api/v1`,
   }),
   endpoints: (builder) => ({
-    getPlayers: builder.mutation({
-      query: ({ currentPage }) => ({
-        url: `/players`,
+    getPlayers: builder.query({
+      query: ({ currentPage = 0 }) => ({
+        url: `/players?per_page=25&page=${currentPage}`,
         method: "GET",
-        body: {
-          page: currentPage,
-        },
       }),
     }),
   }),
 });
 
 export const {
+  useGetPlayersQuery,
   endpoints: playersEndpoints,
   reducerPath: playersReducerPath,
   reducer: playersReducer,

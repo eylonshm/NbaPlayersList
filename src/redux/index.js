@@ -1,7 +1,10 @@
+import { enableMapSet } from "immer";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import * as apiQueries from "./apiQueries";
 import * as slices from "./apiSlices";
+
+enableMapSet();
 
 const store = configureStore({
   reducer: {
@@ -9,7 +12,9 @@ const store = configureStore({
     [apiQueries.playersReducerPath]: apiQueries.playersReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([apiQueries.playersMiddleware]),
+    getDefaultMiddleware({ serializableCheck: false }).concat([
+      apiQueries.playersMiddleware,
+    ]),
 });
 
 const ApiProvider = ({ children }) => (
