@@ -2,8 +2,15 @@ import { Button } from "../elements";
 import styles from "./index.module.scss";
 import PlayerStats from "./Stats";
 import { playerCard as copies } from "../../copies";
+import classNames from "classnames";
 
-const PlayerCard = ({ player, favorite }) => {
+const PlayerCard = ({
+  player,
+  favorite,
+  style,
+  className,
+  onClickFavorite,
+}) => {
   const {
     first_name,
     last_name,
@@ -23,7 +30,7 @@ const PlayerCard = ({ player, favorite }) => {
   ];
 
   return (
-    <div className={styles.container}>
+    <div className={classNames(styles.container, className)} style={style}>
       <div>
         <h3>{`${first_name} ${last_name}`}</h3>
         <h4>{team.full_name}</h4>
@@ -32,12 +39,11 @@ const PlayerCard = ({ player, favorite }) => {
         {stats.map(({ label, value }) => (
           <PlayerStats key={label} label={label} value={value} />
         ))}
-        <PlayerStats />
-        <PlayerStats />
       </div>
       <Button
         className={styles.footerBtn}
         text={favorite ? copies.removeFromFavorites : copies.addToFavorites}
+        onClick={onClickFavorite}
       />
     </div>
   );

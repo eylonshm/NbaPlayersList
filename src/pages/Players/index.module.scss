@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .listContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--margin-s);
+    flex: 1;
+    height: 100%;
+  }
+
+  .playersList {
+    flex: 1;
+    display: flex;
+    width: 100%;
+  }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .seperator {
+    width: 4px;
+    height: 100%;
+    border-radius: var(--border-radius-s);
+    background-color: var(--color-secondary);
+    margin: var(--margin-xxxl);
+  }
+}

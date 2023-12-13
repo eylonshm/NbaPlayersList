@@ -7,6 +7,7 @@
   padding: var(--padding-l);
   border-radius: var(--border-radius-l);
   min-width: 260px;
+  background-color: var(--color-primary);
 
   .middle {
     display: flex;
@@ -17,6 +18,7 @@
     background-color: var(--color-info);
     border-radius: var(--border-radius-m);
     width: 100%;
+    min-height: 54px;
   }
 
   .footerBtn {

@@ -1,11 +1,21 @@
+import "./styles/_index.scss";
 import "./App.scss";
 import { useThemeContext } from "./contexts";
 import { AppWrapper } from "./HOC";
-import "./styles/_index.scss";
+import { Players } from "./pages";
+import { mainPage as copies } from "./copies";
+import { ThemeToggle } from "./components";
 
 function App() {
-  const { theme } = useThemeContext();
-  return <div className={`App ${theme}`}>Content goes here</div>;
+  const { theme, themeSwitch } = useThemeContext();
+
+  return (
+    <div className={`App ${theme}`}>
+      <h2 className="title">{copies.title}</h2>
+      <ThemeToggle onClick={themeSwitch} />
+      <Players className={"players"} />
+    </div>
+  );
 }
 
 const AppWithWrapper = () => (
