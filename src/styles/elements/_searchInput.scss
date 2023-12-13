@@ -1,0 +1,19 @@
+@use "../variables" as *;
+
+.searchInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text);
+  background-color: var(--color-primary);
+  font-size: var(--font-size-2);
+  padding: var(--padding-m) var(--padding-l);
+  border-radius: var(--border-radius-m);
+  border: 1px solid var(--color-secondary);
+  transition: all 0.4s ease;
+  text-align: center;
+
+  &:focus {
+    outline: none;
+  }
+}
