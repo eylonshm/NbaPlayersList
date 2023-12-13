@@ -29,6 +29,8 @@ const PlayerCard = ({
     { label: copies.weight, value: weight_pounds },
   ];
 
+  const shouldRenderStats = position || formatedHeight || weight_pounds;
+
   return (
     <div className={classNames(styles.container, className)} style={style}>
       <div>
@@ -36,9 +38,13 @@ const PlayerCard = ({
         <h4>{team.full_name}</h4>
       </div>
       <div className={styles.middle}>
-        {stats.map(({ label, value }) => (
-          <PlayerStats key={label} label={label} value={value} />
-        ))}
+        {shouldRenderStats ? (
+          stats.map(({ label, value }) => (
+            <PlayerStats key={label} label={label} value={value} />
+          ))
+        ) : (
+          <span>{copies.emptyStats}</span>
+        )}
       </div>
       <Button
         className={styles.footerBtn}
