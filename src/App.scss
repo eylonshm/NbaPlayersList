@@ -1,4 +1,9 @@
 @use "./styles/variables" as *;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+:root {
+  font-family: "Poppins", sans-serif;
+}
 
 .App {
   display: flex;
