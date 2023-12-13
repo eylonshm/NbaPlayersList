@@ -18,6 +18,7 @@ const ScrollList = ({
   threshold = DEFAULT_TRESHOLD,
   maxLength = DEFAULT_MAX_FETCH_LENGTH,
   className,
+  itemSize,
 }) => {
   const loadMoreItems = (startIndex) => {
     if (
@@ -39,7 +40,7 @@ const ScrollList = ({
       height={height}
       itemCount={data.length}
       onItemsRendered={onItemsRendered}
-      itemSize={200}
+      itemSize={itemSize}
       ref={ref}
       width={width}
     >

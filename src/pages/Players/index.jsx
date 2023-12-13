@@ -17,6 +17,7 @@ import styles from "./index.module.scss";
 import { useMemo } from "react";
 import { useDeferredValue } from "react";
 
+const LIST_ITEM_SIZE = 220;
 const GUTTER_SIZE = 10;
 const listTypes = {
   PLAYERS: "players",
@@ -103,6 +104,7 @@ const Players = ({ className }) => {
           item={(props) =>
             listPlayer({ listType: listTypes.PLAYERS, ...props })
           }
+          itemSize={LIST_ITEM_SIZE}
         />
       </div>
       <span className={styles.seperator} />
@@ -114,6 +116,7 @@ const Players = ({ className }) => {
           item={(props) =>
             listPlayer({ listType: listTypes.FAVORITES, ...props })
           }
+          itemSize={LIST_ITEM_SIZE}
         />
       </div>
     </main>
